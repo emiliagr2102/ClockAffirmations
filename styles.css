@@ -1,28 +1,35 @@
+/* Estilo general de la página */
 body {
-  font-family: Arial, sans-serif;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
-  background: #fbf7f5;
-  color: #fbf7f5;
+  background-color: #ffffff; /* Fondo blanco */
+  color: #333; /* Texto gris oscuro */
+  font-family: 'Quicksand', sans-serif; /* Estilo elegante y chill */
 }
 
-.clock-container {
+/* Estilo del reloj */
+.clock {
   text-align: center;
-  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #4a4a4a; /* Borde */
+  border-radius: 15px; /* Bordes redondeados */
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  background-color: #ffffff; /* Fondo blanco del reloj */
 }
 
-#time {
-  font-size: 3rem;
-  margin: 0;
+/* Estilo de la hora */
+.time {
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
-#affirmation {
-  font-size: 1.5rem;
+/* Estilo de las afirmaciones */
+.affirmation {
   margin-top: 10px;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #5c9ead; /* Color relajante */
 }
