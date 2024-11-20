@@ -39,26 +39,33 @@ const affirmations = [
   "I am grounded, calm, and confident.",
   "I embrace change as a natural part of growth.",
   "I choose to see the best in myself and others.",
+  "I trust the wisdom within me.",
+  "I honor my path and trust the process.",
+  "I am a creator of my reality.",
 ];
 
-// Función para obtener la afirmación según la hora actual
-function getAffirmation() {
-  const hour = new Date().getHours();
-  return affirmations[hour % affirmations.length]; // Selección cíclica
-}
 
-// Actualizar el reloj y la afirmación
+// Función para mostrar la hora
 function updateClock() {
-  const now = new Date();
-  const time = now.toLocaleTimeString('en-US', { hour12: false });
-  document.getElementById('time').textContent = time;
-
-  const affirmation = getAffirmation();
-  document.getElementById('affirmation').textContent = affirmation;
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-// Actualización cada segundo
-setInterval(updateClock, 1000);
+// Función para cambiar la afirmación cada 15 minutos
+function updateAffirmation() {
+    const index = Math.floor((new Date().getMinutes() / 15)) % affirmations.length;
+    document.getElementById('affirmation').textContent = affirmations[index];
+}
 
-// Inicializar
+// Actualizar reloj y afirmaciones
+setInterval(() => {
+    updateClock();
+    updateAffirmation();
+}, 1000);
+
+// Inicializar afirmación y reloj al cargar
 updateClock();
+updateAffirmation();
