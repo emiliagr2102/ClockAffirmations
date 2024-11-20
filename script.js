@@ -1,38 +1,27 @@
-// Lista de afirmaciones
+// Lista de afirmaciones positivas
 const affirmations = [
-    "I am worthy of love and respect.",
-    "I am enough, just as I am.",
-    "Creativity flows through me effortlessly.",
-    "I trust my inner artist.",
-    "I radiate positivity and attract the same.",
-    "I am the architect of my life.",
-    "I shine brightly, unapologetically.",
-    "I am open to learning and growing every day.",
-    "I honor my body and treat it with care.",
-    "I turn challenges into opportunities to grow."
+  "You are capable of amazing things.",
+  "Every day is a new beginning.",
+  "You have the power to create change.",
+  "Stay positive, work hard, and make it happen.",
+  "You are stronger than you think.",
+  "Believe in yourself and all that you are.",
+  "Success is the sum of small efforts repeated daily."
 ];
 
-// Función para mostrar la hora
+// Función para actualizar el reloj y las afirmaciones
 function updateClock() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
+
+  // Cambiar afirmación cada hora
+  const affirmationIndex = now.getHours() % affirmations.length;
+  document.getElementById("affirmation").textContent = affirmations[affirmationIndex];
 }
 
-// Función para cambiar la afirmación cada 15 minutos
-function updateAffirmation() {
-    const index = Math.floor((new Date().getMinutes() / 15)) % affirmations.length;
-    document.getElementById('affirmation').textContent = affirmations[index];
-}
-
-// Actualizar reloj y afirmaciones
-setInterval(() => {
-    updateClock();
-    updateAffirmation();
-}, 1000);
-
-// Inicializar afirmación y reloj al cargar
-updateClock();
-updateAffirmation();
+// Actualiza el reloj cada segundo
+setInterval(updateClock, 1000);
+updateClock(); // Llama inicialmente
