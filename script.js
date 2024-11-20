@@ -1,37 +1,38 @@
-// Afirmaciones positivas
+// Lista de afirmaciones
 const affirmations = [
-  "¡Eres increíble!",
-  "Confía en ti, todo es posible.",
-  "Cada día eres mejor.",
-  "El universo está a tu favor.",
-  "Eres valiente y capaz.",
-  "Hoy es un gran día para ser feliz.",
-  "Eres digno de amor y respeto.",
-  "La creatividad fluye a través de ti.",
-  "Tus sueños están al alcance de tu mano.",
-  "Eres un imán para las cosas buenas.",
-  "Tu energía positiva es contagiosa.",
-  "Eres fuerte y resiliente."
+    "I am worthy of love and respect.",
+    "I am enough, just as I am.",
+    "Creativity flows through me effortlessly.",
+    "I trust my inner artist.",
+    "I radiate positivity and attract the same.",
+    "I am the architect of my life.",
+    "I shine brightly, unapologetically.",
+    "I am open to learning and growing every day.",
+    "I honor my body and treat it with care.",
+    "I turn challenges into opportunities to grow."
 ];
 
-// Función para obtener la afirmación según la hora actual
-function getAffirmation() {
-  const hour = new Date().getHours();
-  return affirmations[hour % affirmations.length]; // Selección cíclica
-}
-
-// Actualizar el reloj y la afirmación
+// Función para mostrar la hora
 function updateClock() {
-  const now = new Date();
-  const time = now.toLocaleTimeString('en-US', { hour12: false });
-  document.getElementById('time').textContent = time;
-
-  const affirmation = getAffirmation();
-  document.getElementById('affirmation').textContent = affirmation;
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-// Actualización cada segundo
-setInterval(updateClock, 1000);
+// Función para cambiar la afirmación cada 15 minutos
+function updateAffirmation() {
+    const index = Math.floor((new Date().getMinutes() / 15)) % affirmations.length;
+    document.getElementById('affirmation').textContent = affirmations[index];
+}
 
-// Inicializar
+// Actualizar reloj y afirmaciones
+setInterval(() => {
+    updateClock();
+    updateAffirmation();
+}, 1000);
+
+// Inicializar afirmación y reloj al cargar
 updateClock();
+updateAffirmation();
