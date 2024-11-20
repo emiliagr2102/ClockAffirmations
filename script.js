@@ -1,27 +1,37 @@
-// Lista de afirmaciones positivas
+// Afirmaciones positivas
 const affirmations = [
-  "You are capable of amazing things.",
-  "Every day is a new beginning.",
-  "You have the power to create change.",
-  "Stay positive, work hard, and make it happen.",
-  "You are stronger than you think.",
-  "Believe in yourself and all that you are.",
-  "Success is the sum of small efforts repeated daily."
+  "¡Eres increíble!",
+  "Confía en ti, todo es posible.",
+  "Cada día eres mejor.",
+  "El universo está a tu favor.",
+  "Eres valiente y capaz.",
+  "Hoy es un gran día para ser feliz.",
+  "Eres digno de amor y respeto.",
+  "La creatividad fluye a través de ti.",
+  "Tus sueños están al alcance de tu mano.",
+  "Eres un imán para las cosas buenas.",
+  "Tu energía positiva es contagiosa.",
+  "Eres fuerte y resiliente."
 ];
 
-// Función para actualizar el reloj y las afirmaciones
-function updateClock() {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
-
-  // Cambiar afirmación cada hora
-  const affirmationIndex = now.getHours() % affirmations.length;
-  document.getElementById("affirmation").textContent = affirmations[affirmationIndex];
+// Función para obtener la afirmación según la hora actual
+function getAffirmation() {
+  const hour = new Date().getHours();
+  return affirmations[hour % affirmations.length]; // Selección cíclica
 }
 
-// Actualiza el reloj cada segundo
+// Actualizar el reloj y la afirmación
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString('en-US', { hour12: false });
+  document.getElementById('time').textContent = time;
+
+  const affirmation = getAffirmation();
+  document.getElementById('affirmation').textContent = affirmation;
+}
+
+// Actualización cada segundo
 setInterval(updateClock, 1000);
-updateClock(); // Llama inicialmente
+
+// Inicializar
+updateClock();
